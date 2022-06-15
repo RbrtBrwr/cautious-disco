@@ -9,12 +9,13 @@ package Classes;
  * @author rober
  */
 public class Main {
-
+    public static int sizeOfTest = 1000;
+    public static String[] ids = new String[sizeOfTest];
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
     }
     
 }

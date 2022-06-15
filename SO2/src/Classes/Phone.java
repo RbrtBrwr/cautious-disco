@@ -10,7 +10,7 @@ package Classes;
  */
 public class Phone {
     private final String model;
-    private final int ID = java.lang.System.identityHashCode(this) % 10000;
+    private final String ID = makeUniqueID();
     private int trophyCount = 0;
     private int epic = 0;
     private int rare = 0;
@@ -34,44 +34,69 @@ public class Phone {
         switch(this.model){
             case "Xperia Pro-I":
                 for (int i = 0; i < 4; i++){
-                    if (Math.random() > CAMERA_FAIL){
+                    if (Math.random() < CAMERA_FAIL){
                         this.trophyCount += 360;
                     }
                 }
                 for (int i = 0; i < 2; i++){
-                    if (Math.random() > SCREEN_FAIL){
+                    if (Math.random() < SCREEN_FAIL){
                         this.trophyCount += 360;
                     }
                 }
                 for (int i = 0; i < 3; i++){
-                    if (Math.random() > BUTTON_FAIL){
+                    if (Math.random() < BUTTON_FAIL){
                         this.trophyCount += 360;
                     }
                 }
-                if (Math.random() > PIN_FAIL){
+                if (Math.random() < PIN_FAIL){
                     this.trophyCount += 360;
                 }
+                break;
+               
                 
             case "Xperia 10 III":
                 for (int i = 0; i < 2; i++){
-                    if (Math.random() > CAMERA_FAIL){
+                    if (Math.random() < CAMERA_FAIL){
                         this.trophyCount += 600;
                     }
                 }
                 
-                if (Math.random() > SCREEN_FAIL){
+                if (Math.random() < SCREEN_FAIL){
                     this.trophyCount += 600;
                 }
                 
                 for (int i = 0; i < 2; i++){
-                    if (Math.random() > BUTTON_FAIL){
+                    if (Math.random() < BUTTON_FAIL){
                         this.trophyCount += 600;
                     }
                 }
                 
-                if (Math.random() > PIN_FAIL){
+                if (Math.random() < PIN_FAIL){
                     this.trophyCount += 600;
                 }
+                break;
+
+            default:
+                for (int i = 0; i < 2; i++){
+                    if (Math.random() < CAMERA_FAIL){
+                        this.trophyCount += 600;
+                    }
+                }
+                
+                if (Math.random() < SCREEN_FAIL){
+                    this.trophyCount += 600;
+                }
+                
+                for (int i = 0; i < 2; i++){
+                    if (Math.random() < BUTTON_FAIL){
+                        this.trophyCount += 600;
+                    }
+                }
+                
+                if (Math.random() < PIN_FAIL){
+                    this.trophyCount += 600;
+                }
+                break;
         }
     }
     
@@ -100,7 +125,7 @@ public class Phone {
         return this.trophyCount;
     }
     
-    public int getID(){
+    public String getID(){
         return this.ID;
     }
     
@@ -111,8 +136,12 @@ public class Phone {
     public void promote(){
         this.trophyCount += 1000;
     }
-    
-//    public void printID(){
-//        System.out.println(this.ID);
-//    }
+     
+    private String makeUniqueID(){
+        String id = "";
+        for (int i = 0; i < 4; i++){
+            id += (int)(Math.random() * 10);
+        }
+        return id;
+    }
 }
