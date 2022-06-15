@@ -10,10 +10,23 @@ package Classes;
  */
 public class QNode {
 //    No se que es lo que vamos a guardar en la cola pero aja
-    int info;
-    QNode next = null;
+    private Phone phone;
+    private QNode next = null;
     
-    QNode(int info){
-        this.info = info;
+    QNode(Phone phone){
+        this.phone = phone;
     }
+    
+    public Phone getPhone(){
+        return this.phone;
+    }
+    
+    public QNode getNext(){
+        return this.next;
+    }
+    
+    public void setNext(QNode next){
+        this.next = next;
+    }
+    
 }

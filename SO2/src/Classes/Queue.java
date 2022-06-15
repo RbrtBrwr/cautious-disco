@@ -15,14 +15,14 @@ public class Queue {
     private int headCounter;
     
 //    TODO Esto tiene que retornar el tipo que vaya a guardar, pero no se lo que es todavia asi que int mientras, deberia ser null lo que regresa si falla
-    public int DQ(){
-        int output = -1;
+    public Phone DQ(){
+        Phone output = null;
         if (!this.isEmpty()){
-            output = this.head.info;
+            output = this.head.getPhone();
             
-            this.head = this.head.next;
+            this.head = this.head.getNext();
             
-            if (this.head.next == null){
+            if (this.head.getNext() == null){
                 this.tail = null;
             }
         }
@@ -31,13 +31,13 @@ public class Queue {
     }
     
 //    TODO Esto tiene que retornar el tipo que vaya a guardar, pero no se lo que es todavia asi que int mientras    
-    public void NQ(int thing){
-        QNode newNode = new QNode(thing);
+    public void NQ(Phone phone){
+        QNode newNode = new QNode(phone);
         
         if (this.isEmpty()){
             this.head = this.tail = newNode;
         } else {
-            this.tail.next = newNode;
+            this.tail.setNext(newNode);
             this.tail = newNode;
         }
     }
