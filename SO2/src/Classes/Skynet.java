@@ -28,6 +28,22 @@ public class Skynet {
         }
     }
     
+    public Phone getPhone1(){
+        return this.phone_1;
+    }
+    
+    public Phone getPhone2(){
+        return this.phone_2;
+    }
+    
+    public void setPhone1(Phone phone){
+        this.phone_1 = phone;
+    }
+    
+    public void setPhone2(Phone phone){
+        this.phone_2 = phone;
+    }
+    
     public void getPhones(){
         this.stauts = "Prepping";
         phone_1 = new Phone("AQUI LE PIDO AL ADMIN QUE SAQUE UN TELEFONO DE PLANTA 1");
@@ -88,6 +104,7 @@ public class Skynet {
 
     public void refuerzo(){
         // Entra el administrador y mete a los telefonos en las colas de refuerzo de sus respectivas plantas
+        //
         System.out.println("REFUERZO");
     }
 }
