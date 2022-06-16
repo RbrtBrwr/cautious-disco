@@ -51,4 +51,8 @@ public class Queue {
             this.headCounter++;
         }
     }
+    
+    public int getHeadCounter(){
+        return this.headCounter;
+    }
 }
