@@ -154,4 +154,8 @@ public class Phone {
             return 3;
         } 
     }
+
+    public int getPlant(){
+        return getModel() == "Xperia Pro-I" ? 1 : 2;
+    }
 }
