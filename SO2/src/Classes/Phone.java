@@ -144,4 +144,14 @@ public class Phone {
         }
         return id;
     }
+
+    public int getPriority() {
+        if (this.trophyCount > 2999){
+            return 1;
+        } else if (this.trophyCount > 1999){
+            return 2;
+        } else {
+            return 3;
+        } 
+    }
 }
