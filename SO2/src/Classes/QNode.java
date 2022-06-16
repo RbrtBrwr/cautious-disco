@@ -20,15 +20,25 @@ public class QNode {
     }
     
     public Phone getPhone(){
-        return this.phone;
+        if (this != null){
+            return this.phone;
+        }
+        
+        return null;
     }
     
     public QNode getNext(){
-        return this.next;
+        if (this != null){
+            return this.next;
+        }
+        
+        return null;
     }
     
     public void setNext(QNode next){
-        this.next = next;
+        if (this != null){
+            this.next = next;
+        }
     }
     
 }
