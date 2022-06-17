@@ -13,63 +13,54 @@ import java.util.logging.Logger;
  */
 public class Skynet {
 //    Esto es para que se vean mas estados que solo el de jugar clash
-    final int TRANSITION_TIME = 1000;
+    final int TRANSITION_TIME = 100;
+    private int waitTime = 1000;
     
+    private final Admin admin;
     private Phone phone_1;
     private Phone phone_2;
     private String stauts;
     
     public Skynet(){
+        this.admin = new Admin();
         this.stauts = "Booting";
         try {
             Thread.sleep(TRANSITION_TIME);
         } catch (InterruptedException ex) {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        getPhones();
     }
     
-    public Phone getPhone1(){
-        return this.phone_1;
-    }
-    
-    public Phone getPhone2(){
-        return this.phone_2;
-    }
-    
-    public void setPhone1(Phone phone){
-        this.phone_1 = phone;
-    }
-    
-    public void setPhone2(Phone phone){
-        this.phone_2 = phone;
-    }
     
     public void getPhones(){
         this.stauts = "Prepping";
-        phone_1 = new Phone("AQUI LE PIDO AL ADMIN QUE SAQUE UN TELEFONO DE PLANTA 1");
-        phone_2 = new Phone("AQUI LE PIDO AL ADMIN QUE SAQUE UN TELEFONO DE PLANTA 2");
+        Phone [] phones = admin.getPhones();
+        phone_1 = phones[0];
+        phone_2 = phones[1];
         try {
             Thread.sleep(TRANSITION_TIME);
         } catch (InterruptedException ex) {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.stauts = "FIGHT";
-        
+        decideFuture();
     }
 
     public void decideFuture(){
-        this.stauts = "FIGHT";
         double prob = Math.random();
         if (prob > 0.6){
             duel();
         } else if (prob > 0.33){
             empate();
         } else {
-            refuerzo();
+            reinforce();
         }
     }
     
-    public Phone duel(){
+    public void duel(){
+        
         int firstPhonePower = phone_1.getPower();
         int secondPhonePower = phone_2.getPower();
 
@@ -87,24 +78,47 @@ public class Skynet {
                 secondPhoneWin++;
             }
         }
+        // Aqui hago la espera para lo que se tardan los telefonos en competir
+        waitTime();
 
         // No se si hacer return o llamo la funcion del administrador aqui para que meta el ganador en la cola de ganadores y deseche el otro
         if (firstPhoneWin > secondPhoneWin) {
-            return phone_1;
+            admin.registerWinner(phone_1);
+            System.out.println(phone_1.getModel() + phone_1.getID() + " wins");
         } else {
-            return phone_2;
+            admin.registerWinner(phone_2);
+            System.out.println(phone_2.getModel() + phone_2.getID() + " wins");
         }
+        
+        getPhones();
         
     }
 
     public void empate(){
         // Entra el administrador y mete ambos telefonos de vuelta a sus respectivas colas
+        waitTime();
         System.out.println("EMPATE");
+        admin.draw(phone_1, phone_2);
+        getPhones();
     }
 
-    public void refuerzo(){
+    public void reinforce(){
         // Entra el administrador y mete a los telefonos en las colas de refuerzo de sus respectivas plantas
-        //
+        waitTime();
         System.out.println("REFUERZO");
+        admin.reinforce(phone_1, phone_2);
+        getPhones();
+    }
+
+    public void waitTime(){
+        try {
+            Thread.sleep(waitTime);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void updateWaitTime(int newTime){
+        this.waitTime = newTime;
     }
 }

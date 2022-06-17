@@ -8,75 +8,72 @@ package Classes;
  *
  * @author ponsa
  */
-public class Admin extends Thread{
+public class Admin{
+
+    private final Planta planta1;
+    private final Planta planta2;
+    private final Queue marketReady;
     
-    //
-    
-    private final Skynet jarvis;
-    private final Queue level1;
-    private final Queue level2;
-    private final Queue level3;
-    private final Queue reinforce;
-    private boolean flag;
-    
-    public Admin(Skynet jarvis, Queue level1, Queue level2, Queue level3, Queue reinforce){
-        this.jarvis = jarvis;
-        this.level1 = level1;
-        this.level2 = level2;
-        this.level3 = level3;
-        this.reinforce = reinforce;
-        this.flag = false;
+    public Admin(){
+        this.planta1 = new Planta();
+        this.planta2 = new Planta();
+        this.marketReady = new Queue();
+        startingPhones();
     }
-    
-    public void checkQueue(Queue queue){
-        while(!queue.isEmpty()){
-            if(jarvis.getPhone1() != null){
-                jarvis.setPhone1(queue.DQ());
-            } else{
-                jarvis.setPhone2(queue.DQ());
-                this.flag = true;
-                break;
-            }
-        } 
+
+    public Phone[] getPhones(){
+        Phone[] phones = new Phone[2];
+        phones[0] = this.planta1.getPhone();
+        phones[1] = this.planta2.getPhone();
+
+        planta1.updateQueues();
+        planta2.updateQueues();
+
+        newPhones();
+//        System.out.println("Planta 1");
+//        planta1.checkAll();
+//        System.out.println("Planta 2");
+//        planta2.checkAll();
+        return phones;
     }
-    
-    public void checkQueues(){
-        checkQueue(this.level1);
-        if(this.flag){
-            this.flag = false;
-            return;
+
+    public void registerWinner(Phone phone){
+        this.marketReady.NQ(phone);
+    }
+
+    public void reinforce(Phone phone1, Phone phone2){
+        if (phone1.getModel() == "Xperia Pro-I"){
+            this.planta1.reinforcePhone(phone1);
+            this.planta2.reinforcePhone(phone2);
         }
-        checkQueue(this.level2);
-        if(this.flag){
-            this.flag = false;
-            return;
-        }
-        checkQueue(this.level3);
-        
-    }
-    
-    
-    //Encolar en cola nivel 1, nivel 2 o nivel 3
-    public void queuePhone(Phone phone){
-        if (phone.getTrophies() <= 1999) {
-            this.level3.NQ(phone);
-        } else if (phone.getTrophies() > 1999 && phone.getTrophies() < 3000){
-            this.level2.NQ(phone);
-        } else {
-            this.level1.NQ(phone);
+        else{
+            this.planta1.reinforcePhone(phone2);
+            this.planta2.reinforcePhone(phone1);
         }
     }
-    
-    //Encolar en refuerzo
-    public void queueReinforce(Phone phone){
-        this.reinforce.NQ(phone);
-    }
-    
-    @Override
-    public void run(){
-        while(true){
-           checkQueues();
+
+    public void draw(Phone phone1, Phone phone2){
+        if (phone1.getModel() == "Xperia Pro-I"){
+            this.planta1.queuePhone(phone1);
+            this.planta2.queuePhone(phone2);
+        }
+        else{
+            this.planta1.queuePhone(phone2);
+            this.planta2.queuePhone(phone1);
         }
     }
-    
+
+    public void startingPhones(){
+        for (int i = 0; i < 5; i++){
+            this.planta1.queuePhone(new Phone("Xperia Pro-I"));
+            this.planta2.queuePhone(new Phone("Xperia 10 III"));
+        }
+    }
+
+    public void newPhones(){
+
+        this.planta1.queuePhone(new Phone("Xperia Pro-I"));
+        this.planta2.queuePhone(new Phone("Xperia 10 III"));
+
+    }
 }
