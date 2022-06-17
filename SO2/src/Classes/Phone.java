@@ -35,21 +35,21 @@ public class Phone {
             case "Xperia Pro-I":
                 for (int i = 0; i < 4; i++){
                     if (Math.random() < CAMERA_FAIL){
-                        this.trophyCount += 360;
+                        this.trophyCount += 300;
                     }
                 }
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < SCREEN_FAIL){
-                        this.trophyCount += 360;
+                        this.trophyCount += 300;
                     }
                 }
                 for (int i = 0; i < 3; i++){
                     if (Math.random() < BUTTON_FAIL){
-                        this.trophyCount += 360;
+                        this.trophyCount += 300;
                     }
                 }
                 if (Math.random() < PIN_FAIL){
-                    this.trophyCount += 360;
+                    this.trophyCount += 300;
                 }
                 break;
                
@@ -57,44 +57,44 @@ public class Phone {
             case "Xperia 10 III":
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < CAMERA_FAIL){
-                        this.trophyCount += 600;
+                        this.trophyCount += 500;
                     }
                 }
                 
                 if (Math.random() < SCREEN_FAIL){
-                    this.trophyCount += 600;
+                    this.trophyCount += 500;
                 }
                 
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < BUTTON_FAIL){
-                        this.trophyCount += 600;
+                        this.trophyCount += 500;
                     }
                 }
                 
                 if (Math.random() < PIN_FAIL){
-                    this.trophyCount += 600;
+                    this.trophyCount += 500;
                 }
                 break;
 
             default:
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < CAMERA_FAIL){
-                        this.trophyCount += 600;
+                        this.trophyCount += 200;
                     }
                 }
                 
                 if (Math.random() < SCREEN_FAIL){
-                    this.trophyCount += 600;
+                    this.trophyCount += 200;
                 }
                 
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < BUTTON_FAIL){
-                        this.trophyCount += 600;
+                        this.trophyCount += 200;
                     }
                 }
                 
                 if (Math.random() < PIN_FAIL){
-                    this.trophyCount += 600;
+                    this.trophyCount += 200;
                 }
                 break;
         }
