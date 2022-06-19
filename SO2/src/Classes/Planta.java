@@ -79,18 +79,20 @@ public class Planta {
                 this.queuePhone(temp);
             }
         }
+        
+        checkAll();
     }
 
-//    public void checkAll(){
-//        System.out.println("Priority 1");
-//        this.priority1.checkOut();
-//        System.out.println("Priority 2");
-//        this.priority2.checkOut();
-//        System.out.println("Priority 3");
-//        this.priority3.checkOut();
-//        System.out.println("Reinforce");
-//        this.reinforce.checkOut();
-//    }
+    public void checkAll(){
+        System.out.println("Priority 1");
+        this.priority1.checkOut();
+        System.out.println("\nPriority 2");
+        this.priority2.checkOut();
+        System.out.println("\nPriority 3");
+        this.priority3.checkOut();
+        System.out.println("\nReinforce");
+        this.reinforce.checkOut();
+    }
 }
 
 
