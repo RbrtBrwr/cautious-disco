@@ -11,13 +11,15 @@ package Classes;
 public class Main {
     public static int sizeOfTest = 1000;
     public static String[] ids = new String[sizeOfTest];
+    public static Interfaz interfaz = new Interfaz();
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        interfaz.setVisible(true);
         //AI
         Skynet superInteligenciaArtificialPuroPene = new Skynet();
+        
 
     }
     

@@ -24,6 +24,7 @@ public class Skynet {
     public Skynet(){
         this.admin = new Admin();
         this.stauts = "Booting";
+//        Main.interfaz.setAIStatus(this.stauts);
         try {
             Thread.sleep(TRANSITION_TIME);
         } catch (InterruptedException ex) {
@@ -36,6 +37,7 @@ public class Skynet {
     
     public void getPhones(){
         this.stauts = "Prepping";
+//        Main.interfaz.setAIStatus(this.stauts);
         Phone [] phones = admin.getPhones();
         phone_1 = phones[0];
         phone_2 = phones[1];
@@ -45,6 +47,7 @@ public class Skynet {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.stauts = "FIGHT";
+//        Main.interfaz.setAIStatus(this.stauts);
         decideFuture();
     }
 

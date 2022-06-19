@@ -21,6 +21,10 @@ public class Planta {
         this.priority3 = new Queue();
         this.reinforce = new Queue();
     }
+    
+    public Queue getPriority1(){
+        return this.priority1;
+    }
 
     public Phone getPhone(){
         // Si la cola de prioridad mas alta tiene telefonos, updateo los counters de las de menor prioridad y retorno el telefono

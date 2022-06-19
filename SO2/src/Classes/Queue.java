@@ -11,8 +11,13 @@ package Classes;
 public class Queue {
     private QNode head = null;
     private QNode tail = null;
+    private int size;
 //    Esta es la vaina para contar que no se me quede el pana ahi esperando siempre
     private int headCounter;
+    
+    public QNode getHead(){
+        return this.head;
+    }
     
 //    TODO Esto tiene que retornar el tipo que vaya a guardar, pero no se lo que es todavia asi que int mientras, deberia ser null lo que regresa si falla
     public Phone DQ(){
@@ -31,6 +36,7 @@ public class Queue {
             }
         }
         headCounter = 0;
+        size--;
         return output;
     }
     
@@ -44,6 +50,7 @@ public class Queue {
             this.tail.setNext(newNode);
             this.tail = newNode;
         }
+        size++;
     }
     
     public boolean isEmpty(){
@@ -54,6 +61,10 @@ public class Queue {
         if (!this.isEmpty()){
             this.headCounter++;
         }
+    }
+    
+    public int getSize(){
+        return this.size;
     }
     
     public int getHeadCounter(){
