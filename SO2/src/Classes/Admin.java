@@ -31,6 +31,7 @@ public class Admin{
 
         newPhones();
         Main.interfaz.updateQueues(planta1, planta2);
+
 //        System.out.println("Planta 1");
 //        planta1.checkAll();
 //        System.out.println("Planta 2");

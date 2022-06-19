@@ -37,17 +37,20 @@ public class Skynet {
     
     public void getPhones(){
         this.stauts = "Prepping";
-//        Main.interfaz.setAIStatus(this.stauts);
+        Main.interfaz.setSkynetStatus(stauts);
         Phone [] phones = admin.getPhones();
         phone_1 = phones[0];
         phone_2 = phones[1];
+        Main.interfaz.setPhone1(phone_1.getModel() + phone_1.getID());
+        Main.interfaz.setPhone2(phone_2.getModel() + phone_2.getID());
+        System.out.println(phone_1.getModel() + phone_1.getID() + " vs " + phone_2.getModel() + phone_2.getID());
         try {
             Thread.sleep(TRANSITION_TIME);
         } catch (InterruptedException ex) {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.stauts = "FIGHT";
-//        Main.interfaz.setAIStatus(this.stauts);
+        Main.interfaz.setSkynetStatus(stauts);
         decideFuture();
     }
 
@@ -87,9 +90,11 @@ public class Skynet {
         // No se si hacer return o llamo la funcion del administrador aqui para que meta el ganador en la cola de ganadores y deseche el otro
         if (firstPhoneWin > secondPhoneWin) {
             admin.registerWinner(phone_1);
+            Main.interfaz.setResult("<html>GANADOR: " + "<br>" + phone_1.getModel() + phone_1.getID() + "</html>");
             System.out.println(phone_1.getModel() + phone_1.getID() + " wins");
         } else {
             admin.registerWinner(phone_2);
+            Main.interfaz.setResult("<html>GANADOR: " + "<br>" + phone_2.getModel() + phone_2.getID() + "</html>");
             System.out.println(phone_2.getModel() + phone_2.getID() + " wins");
         }
         
@@ -100,7 +105,8 @@ public class Skynet {
     public void empate(){
         // Entra el administrador y mete ambos telefonos de vuelta a sus respectivas colas
         waitTime();
-        System.out.println("EMPATE");
+        Main.interfaz.setResult("EMPATE");
+//        System.out.println("EMPATE");
         admin.draw(phone_1, phone_2);
         getPhones();
     }
@@ -108,7 +114,8 @@ public class Skynet {
     public void reinforce(){
         // Entra el administrador y mete a los telefonos en las colas de refuerzo de sus respectivas plantas
         waitTime();
-        System.out.println("REFUERZO");
+        Main.interfaz.setResult("REFUERZO");
+//        System.out.println("REFUERZO");
         admin.reinforce(phone_1, phone_2);
         getPhones();
     }
