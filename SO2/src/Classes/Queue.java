@@ -20,10 +20,14 @@ public class Queue {
         if (!this.isEmpty()){
             output = this.head.getPhone();
             
-            this.head = this.head.getNext();
-            
+
             if (this.head.getNext() == null){
-                this.tail = null;
+                this.tail = this.head = null;
+            } else {
+                this.head = this.head.getNext();
+                if (this.head.getNext() == null){
+                    this.tail = this.head;
+                }
             }
         }
         headCounter = 0;
@@ -49,6 +53,22 @@ public class Queue {
     public void updateHeadCounter(){
         if (!this.isEmpty()){
             this.headCounter++;
+        }
+    }
+    
+    public int getHeadCounter(){
+        return this.headCounter;
+    }
+
+    public void resetHeadCounter(){
+        this.headCounter = 0;
+    }
+
+    public void checkOut(){
+        QNode temp = this.head;
+        while (temp != null){
+            System.out.println(temp.getPhone().getModel() + " " + temp.getPhone().getID());
+            temp = temp.getNext();
         }
     }
 }
