@@ -13,12 +13,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static interfaz interfaz;
+    public static Skynet superInteligenciaArtificialPuroPene = new Skynet();
     public static void main(String[] args) {
         
         interfaz = new interfaz();
         interfaz.setVisible(true);
         //AI
-        Skynet superInteligenciaArtificialPuroPene = new Skynet();
+        superInteligenciaArtificialPuroPene.getPhones();
         
 
     }

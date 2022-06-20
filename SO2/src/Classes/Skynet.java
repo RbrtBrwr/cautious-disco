@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class Skynet {
 //    Esto es para que se vean mas estados que solo el de jugar clash
     final int TRANSITION_TIME = 100;
-    private int waitTime = 100;
+    private int waitTime = 1000;
     
     private final Admin admin;
     private Phone phone_1;
@@ -30,7 +30,7 @@ public class Skynet {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        getPhones();
+//        getPhones();
     }
     
     
