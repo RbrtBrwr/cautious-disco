@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class Skynet {
 //    Esto es para que se vean mas estados que solo el de jugar clash
     final int TRANSITION_TIME = 100;
-    private int waitTime = 1000;
+    private int waitTime = 100;
     
     private final Admin admin;
     private Phone phone_1;
@@ -104,8 +104,12 @@ public class Skynet {
     public void empate(){
         // Entra el administrador y mete ambos telefonos de vuelta a sus respectivas colas
         waitTime();
+
         Main.interfaz.setResult("EMPATE");
 //        System.out.println("EMPATE");
+
+        System.out.println("EMPATE----------------------------------");
+
         admin.draw(phone_1, phone_2);
         getPhones();
     }
@@ -113,8 +117,12 @@ public class Skynet {
     public void reinforce(){
         // Entra el administrador y mete a los telefonos en las colas de refuerzo de sus respectivas plantas
         waitTime();
+
         Main.interfaz.setResult("REFUERZO");
 //        System.out.println("REFUERZO");
+
+        System.out.println("REFUERZO----------------------------------");
+
         admin.reinforce(phone_1, phone_2);
         getPhones();
         

@@ -13,6 +13,8 @@ public class Admin{
     private final Planta planta1;
     private final Planta planta2;
     private final Queue marketReady;
+    private int tracker = 0;
+    private int productionCounter = 0;
     
     public Admin(){
         this.planta1 = new Planta();
@@ -25,18 +27,33 @@ public class Admin{
         Phone[] phones = new Phone[2];
         phones[0] = this.planta1.getPhone();
         phones[1] = this.planta2.getPhone();
+        
+        System.out.println("======================" + tracker + "========================");
+        tracker++;
 
         planta1.updateQueues();
         planta2.updateQueues();
 
-        newPhones();
-        Main.interfaz.updateQueues(planta1, planta2);
 
-//        System.out.println("Planta 1");
-//        planta1.checkAll();
-//        System.out.println("Planta 2");
-//        planta2.checkAll();
-        return phones;
+        Main.interfaz.updateQueues(planta1, planta2);
+        productionCounter++;
+        if (productionCounter == 1){
+            productionCounter = 0;
+            
+            if (Math.random() <= .70){
+                newPhones();
+                System.out.println("cree telefonos");
+            } else {
+                System.out.println("no cree nada");
+            }
+        }
+        if (phones[0] == null || phones[1] == null){
+            System.out.println("NO HAY TELEFONOS LASKDUJFHLKUIASJDHFJKLASDHFJKLHK");
+            return getPhones();
+        } else {
+            return phones;   
+        }
+
     }
 
     public void registerWinner(Phone phone){
@@ -66,7 +83,7 @@ public class Admin{
     }
 
     public void startingPhones(){
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 2; i++){
             this.planta1.queuePhone(new Phone("Xperia Pro-I"));
             this.planta2.queuePhone(new Phone("Xperia 10 III"));
         }
