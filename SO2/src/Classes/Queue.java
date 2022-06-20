@@ -83,15 +83,5 @@ public class Queue {
         }
     }
     
-    public void updateInterface(){
-        String queue = "";
-        QNode temp = this.head;
-        System.out.println(temp.getPhone().getID());
-        while(temp != null){
-            queue += temp.getPhone().getModel() + " " + temp.getPhone().getID() + " | ";
-            temp = temp.getNext();
-        }
-        System.out.println("LA MALDITA COLA: " + queue);
-    }
 
 }
