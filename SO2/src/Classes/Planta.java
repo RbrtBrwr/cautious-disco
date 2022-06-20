@@ -93,6 +93,19 @@ public class Planta {
         System.out.println("\nReinforce");
         this.reinforce.checkOut();
     }
+    
+    public String get1(){
+        return this.priority1.getOut();
+    }
+    public String get2(){
+        return this.priority2.getOut();
+    }
+    public String get3(){
+        return this.priority3.getOut();
+    }
+    public String getReinf(){
+        return this.reinforce.getOut();
+    }
 }
 
 

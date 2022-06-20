@@ -71,5 +71,15 @@ public class Queue {
             temp = temp.getNext();
         }
     }
+    
+    public String getOut(){
+        String text = "";
+        QNode temp = this.head;
+        while (temp != null){
+            text += temp.getPhone().getModel() + " " + temp.getPhone().getID() + "\n";
+            temp = temp.getNext();
+        }
+        return text;
+    }
 
 }

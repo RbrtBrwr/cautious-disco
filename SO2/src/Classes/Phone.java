@@ -35,21 +35,21 @@ public class Phone {
             case "Xperia Pro-I":
                 for (int i = 0; i < 4; i++){
                     if (Math.random() < CAMERA_FAIL){
-                        this.trophyCount += 300;
+                        this.trophyCount += 360;
                     }
                 }
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < SCREEN_FAIL){
-                        this.trophyCount += 300;
+                        this.trophyCount += 360;
                     }
                 }
                 for (int i = 0; i < 3; i++){
                     if (Math.random() < BUTTON_FAIL){
-                        this.trophyCount += 300;
+                        this.trophyCount += 360;
                     }
                 }
                 if (Math.random() < PIN_FAIL){
-                    this.trophyCount += 300;
+                    this.trophyCount += 360;
                 }
                 break;
                
@@ -57,22 +57,22 @@ public class Phone {
             case "Xperia 10 III":
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < CAMERA_FAIL){
-                        this.trophyCount += 500;
+                        this.trophyCount += 420;
                     }
                 }
                 
                 if (Math.random() < SCREEN_FAIL){
-                    this.trophyCount += 500;
+                    this.trophyCount += 420;
                 }
                 
                 for (int i = 0; i < 2; i++){
                     if (Math.random() < BUTTON_FAIL){
-                        this.trophyCount += 500;
+                        this.trophyCount += 420;
                     }
                 }
                 
                 if (Math.random() < PIN_FAIL){
-                    this.trophyCount += 500;
+                    this.trophyCount += 420;
                 }
                 break;
 

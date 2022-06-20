@@ -32,6 +32,7 @@ public class Admin{
         tracker++;
 
         planta1.updateQueues();
+        Main.interfaz.update(planta1);
         planta2.updateQueues();
 
         productionCounter++;
