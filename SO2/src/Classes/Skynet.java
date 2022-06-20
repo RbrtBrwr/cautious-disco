@@ -97,7 +97,6 @@ public class Skynet {
             Main.interfaz.setResult("<html>GANADOR: " + "<br>" + phone_2.getModel() + phone_2.getID() + "</html>");
             System.out.println(phone_2.getModel() + phone_2.getID() + " wins");
         }
-        
         getPhones();
         
     }
@@ -118,6 +117,7 @@ public class Skynet {
 //        System.out.println("REFUERZO");
         admin.reinforce(phone_1, phone_2);
         getPhones();
+        
     }
 
     public void waitTime(){
