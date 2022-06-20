@@ -30,10 +30,10 @@ public class Admin{
         
         System.out.println("======================" + tracker + "========================");
         tracker++;
+        
 
         planta1.updateQueues();
         planta2.updateQueues();
-
 
         Main.interfaz.updateQueues(planta1, planta2);
         productionCounter++;
