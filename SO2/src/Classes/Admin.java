@@ -31,7 +31,6 @@ public class Admin{
         phones[0] = this.planta1.getPhone();
         phones[1] = this.planta2.getPhone();
         
-//        System.out.println("======================" + tracker + "========================");
         tracker++;
         
 
@@ -46,10 +45,7 @@ public class Admin{
             
             if (Math.random() <= .70){
                 newPhones();
-//                System.out.println("cree telefonos");
-            } else {
-//                System.out.println("no cree nada");
-            }
+            } 
         }
         if (phones[0] == null || phones[1] == null){
             System.out.println("NO HAY TELEFONOS LASKDUJFHLKUIASJDHFJKLASDHFJKLHK");
@@ -57,7 +53,6 @@ public class Admin{
         } else {
             return phones;   
         }
-
     }
 
     public void registerWinner(Phone phone){

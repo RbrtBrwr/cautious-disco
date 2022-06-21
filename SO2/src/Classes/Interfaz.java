@@ -4,6 +4,9 @@
  */
 package Classes;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 
 /**
@@ -12,7 +15,7 @@ package Classes;
  */
 public class Interfaz extends javax.swing.JFrame {
     
-
+    private boolean running = false;
     
 
     /**
@@ -22,136 +25,8 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void updateQueues(Planta planta1, Planta planta2, Queue marketReady){
-        updatePlanta1(planta1);
-        updatePlanta2(planta2);
-        updateMarketReady(marketReady);
-    }
     
-    public void setResult(String battleResult){
-        result.setText(battleResult);
-    }
-    
-    public void setSkynetStatus(String status){
-        skynetStatus.setText(status);
-    }
-    
-    public void setPhone1(String phone){
-        phone1.setText(phone);
-    }
-    
-    public void setPhone2(String phone){
-        phone2.setText(phone);
-    }
-    
-    public void updatePlanta1(Planta planta){
-        
-        String queue1 = "";
-        String queue2 = "";
-        String queue3 = "";
-        String reinforce = "";
-        
-        Queue cola1 = planta.getPriority1();
-        Queue cola2 = planta.getPriority2();
-        Queue cola3 = planta.getPriority3();
-        Queue colaRefuerzo = planta.getReinforcement();
-        
-        QNode current1 = cola1.getHead();
-        QNode current2 = cola2.getHead();
-        QNode current3 = cola3.getHead();
-        QNode currentR = colaRefuerzo.getHead();
-        
-        while (current1 != null){
-            queue1 += "  " + current1.getPhone().getModel() + " " + current1.getPhone().getID() + "\n";
-            current1 = current1.getNext();
-        }
-        
-        while (current2 != null){
-            queue2 += "  " + current2.getPhone().getModel() + " " + current2.getPhone().getID() + "\n";
-            current2 = current2.getNext();
-        }
-        
-        while (current3 != null){
-            queue3 += "  " + current3.getPhone().getModel() + " " + current3.getPhone().getID() + "\n";
-            current3 = current3.getNext();
-        }
-        
-        while (currentR != null){
-            reinforce += "  " + currentR.getPhone().getModel() + " " + currentR.getPhone().getID() + "\n";
-            currentR = currentR.getNext();
-        }
-        
-        Q1P1Text.setText(queue1);
-        Q2P1Text.setText(queue2);
-        Q3P1Text.setText(queue3);
-        RP1Text.setText(reinforce);
-        
-    }
-    
-    public void updatePlanta2(Planta planta){
-        
-        String queue1 = "";
-        String queue2 = "";
-        String queue3 = "";
-        String reinforce = "";
-        
-        Queue cola1 = planta.getPriority1();
-        Queue cola2 = planta.getPriority2();
-        Queue cola3 = planta.getPriority3();
-        Queue colaRefuerzo = planta.getReinforcement();
-        
-        QNode current1 = cola1.getHead();
-        QNode current2 = cola2.getHead();
-        QNode current3 = cola3.getHead();
-        QNode currentR = colaRefuerzo.getHead();
-        
-        while (current1 != null){
-            queue1 += "  " + current1.getPhone().getModel() + " " + current1.getPhone().getID() + "\n";
-            current1 = current1.getNext();
-        }
-        
-        while (current2 != null){
-            queue2 += "  " + current2.getPhone().getModel() + " " + current2.getPhone().getID() + "\n";
-            current2 = current2.getNext();
-        }
-        
-        while (current3 != null){
-            queue3 += "  " + current3.getPhone().getModel() + " " + current3.getPhone().getID() + "\n";
-            current3 = current3.getNext();
-        }
-        
-        while (currentR != null){
-            reinforce += "  " + currentR.getPhone().getModel() + " " + currentR.getPhone().getID() + "\n";
-            currentR = currentR.getNext();
-        }
-        
-        Q1P2Text.setText(queue1);
-        Q2P2Text.setText(queue2);
-        Q3P2Text.setText(queue3);
-        RP2Text.setText(reinforce);
-        
-    }
-    
-    public void updateMarketReady(Queue marketReady){
-        
-        String queue = "";
-        
-        
-        QNode current = marketReady.getHead();
-        
-        while (current != null){
-            queue += "  " + current.getPhone().getModel() + " " + current.getPhone().getID() + "\n";
-            current = current.getNext();
-        }
-        
-        phoneListText.setText(queue);
 
-        
-    }
-    
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,138 +37,220 @@ public class Interfaz extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Plant2Title = new javax.swing.JPanel();
-        Plant2 = new javax.swing.JLabel();
-        Plant1Title = new javax.swing.JPanel();
-        Plant1 = new javax.swing.JLabel();
-        SKYNET = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        vs = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        listaGanadores = new javax.swing.JList<>();
+        PanelPlanta2 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        Prioridad1Planta2 = new javax.swing.JList<>();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        Prioridad2Planta2 = new javax.swing.JList<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        Prioridad3Planta2 = new javax.swing.JList<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        RefuerzoPlanta2 = new javax.swing.JList<>();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Prioridad1Planta1 = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Prioridad2Planta1 = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Prioridad3Planta1 = new javax.swing.JList<>();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        RefuerzoPlanta1 = new javax.swing.JList<>();
+        jPanel3 = new javax.swing.JPanel();
+        timeSlider = new javax.swing.JSlider();
+        jPanel4 = new javax.swing.JPanel();
         SkynetStatus = new javax.swing.JPanel();
         skynetStatus = new javax.swing.JLabel();
-        resultPanel = new javax.swing.JPanel();
         result = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        nivel1Text = new javax.swing.JLabel();
-        phone1Name = new javax.swing.JPanel();
-        phone1 = new javax.swing.JLabel();
-        Q1P1 = new javax.swing.JScrollPane();
-        Q1P1Text = new javax.swing.JTextArea();
-        vs = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        phone2Name = new javax.swing.JPanel();
         phone2 = new javax.swing.JLabel();
-        Q2P1 = new javax.swing.JScrollPane();
-        Q2P1Text = new javax.swing.JTextArea();
-        Q3P1 = new javax.swing.JScrollPane();
-        Q3P1Text = new javax.swing.JTextArea();
-        RP1 = new javax.swing.JScrollPane();
-        RP1Text = new javax.swing.JTextArea();
-        Q1P2 = new javax.swing.JScrollPane();
-        Q1P2Text = new javax.swing.JTextArea();
-        Q2P2 = new javax.swing.JScrollPane();
-        Q2P2Text = new javax.swing.JTextArea();
-        Q3P2 = new javax.swing.JScrollPane();
-        Q3P2Text = new javax.swing.JTextArea();
-        RP2 = new javax.swing.JScrollPane();
-        RP2Text = new javax.swing.JTextArea();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        phoneList = new javax.swing.JScrollPane();
-        phoneListText = new javax.swing.JTextArea();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        timeSlider = new javax.swing.JSlider();
+        phone1 = new javax.swing.JLabel();
+        startButton = new javax.swing.JButton();
+        stopButton = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
 
-        Plant2Title.setOpaque(false);
+        vs.setOpaque(false);
 
-        Plant2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Plant2.setText("PLANTA 2");
-
-        javax.swing.GroupLayout Plant2TitleLayout = new javax.swing.GroupLayout(Plant2Title);
-        Plant2Title.setLayout(Plant2TitleLayout);
-        Plant2TitleLayout.setHorizontalGroup(
-            Plant2TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Plant2TitleLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(Plant2)
-                .addContainerGap(24, Short.MAX_VALUE))
+        javax.swing.GroupLayout vsLayout = new javax.swing.GroupLayout(vs);
+        vs.setLayout(vsLayout);
+        vsLayout.setHorizontalGroup(
+            vsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
-        Plant2TitleLayout.setVerticalGroup(
-            Plant2TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Plant2TitleLayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(Plant2)
-                .addContainerGap())
+        vsLayout.setVerticalGroup(
+            vsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(Plant2Title);
-        Plant2Title.setBounds(900, 20, 100, 30);
+        jPanel1.add(vs);
+        vs.setBounds(580, 100, 50, 30);
 
-        Plant1Title.setOpaque(false);
+        listaGanadores.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GANADORES", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        listaGanadores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaGanadores.setEnabled(false);
+        listaGanadores.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        listaGanadores.setVisibleRowCount(15);
+        jScrollPane5.setViewportView(listaGanadores);
 
-        Plant1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Plant1.setText("PLANTA 1");
+        jPanel1.add(jScrollPane5);
+        jScrollPane5.setBounds(270, 460, 680, 80);
 
-        javax.swing.GroupLayout Plant1TitleLayout = new javax.swing.GroupLayout(Plant1Title);
-        Plant1Title.setLayout(Plant1TitleLayout);
-        Plant1TitleLayout.setHorizontalGroup(
-            Plant1TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Plant1TitleLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(Plant1)
-                .addContainerGap(23, Short.MAX_VALUE))
+        PanelPlanta2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PLANTA 2", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(153, 0, 204))); // NOI18N
+        PanelPlanta2.setOpaque(false);
+
+        Prioridad1Planta2.setBorder(javax.swing.BorderFactory.createTitledBorder("PRIORIDAD 1"));
+        Prioridad1Planta2.setEnabled(false);
+        jScrollPane8.setViewportView(Prioridad1Planta2);
+
+        Prioridad2Planta2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PRIORIDAD 2"));
+        Prioridad2Planta2.setEnabled(false);
+        jScrollPane9.setViewportView(Prioridad2Planta2);
+
+        Prioridad3Planta2.setBorder(javax.swing.BorderFactory.createTitledBorder("PRIORIDAD 3"));
+        Prioridad3Planta2.setEnabled(false);
+        jScrollPane7.setViewportView(Prioridad3Planta2);
+
+        RefuerzoPlanta2.setBorder(javax.swing.BorderFactory.createTitledBorder("REFUERZO"));
+        RefuerzoPlanta2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        RefuerzoPlanta2.setToolTipText("");
+        RefuerzoPlanta2.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        RefuerzoPlanta2.setEnabled(false);
+        RefuerzoPlanta2.setSelectionBackground(new java.awt.Color(60, 63, 65));
+        RefuerzoPlanta2.setVisibleRowCount(15);
+        jScrollPane6.setViewportView(RefuerzoPlanta2);
+
+        javax.swing.GroupLayout PanelPlanta2Layout = new javax.swing.GroupLayout(PanelPlanta2);
+        PanelPlanta2.setLayout(PanelPlanta2Layout);
+        PanelPlanta2Layout.setHorizontalGroup(
+            PanelPlanta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPlanta2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(PanelPlanta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelPlanta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27))
         );
-        Plant1TitleLayout.setVerticalGroup(
-            Plant1TitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Plant1TitleLayout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(Plant1)
-                .addContainerGap())
-        );
-
-        jPanel1.add(Plant1Title);
-        Plant1Title.setBounds(240, 20, 100, 30);
-
-        SKYNET.setOpaque(false);
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SKYNET");
-
-        javax.swing.GroupLayout SKYNETLayout = new javax.swing.GroupLayout(SKYNET);
-        SKYNET.setLayout(SKYNETLayout);
-        SKYNETLayout.setHorizontalGroup(
-            SKYNETLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SKYNETLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30))
-        );
-        SKYNETLayout.setVerticalGroup(
-            SKYNETLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SKYNETLayout.createSequentialGroup()
+        PanelPlanta2Layout.setVerticalGroup(
+            PanelPlanta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPlanta2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGroup(PanelPlanta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelPlanta2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(SKYNET);
-        SKYNET.setBounds(560, 10, 100, 30);
+        jPanel1.add(PanelPlanta2);
+        PanelPlanta2.setBounds(850, 10, 350, 440);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PLANTA 1", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 0, 255))); // NOI18N
+        jPanel2.setOpaque(false);
+
+        Prioridad1Planta1.setBorder(javax.swing.BorderFactory.createTitledBorder("PRIORIDAD 1"));
+        Prioridad1Planta1.setEnabled(false);
+        jScrollPane2.setViewportView(Prioridad1Planta1);
+
+        Prioridad2Planta1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "PRIORIDAD 2"));
+        Prioridad2Planta1.setEnabled(false);
+        jScrollPane1.setViewportView(Prioridad2Planta1);
+
+        Prioridad3Planta1.setBorder(javax.swing.BorderFactory.createTitledBorder("PRIORIDAD 3"));
+        Prioridad3Planta1.setEnabled(false);
+        jScrollPane3.setViewportView(Prioridad3Planta1);
+
+        RefuerzoPlanta1.setBorder(javax.swing.BorderFactory.createTitledBorder("REFUERZO"));
+        RefuerzoPlanta1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        RefuerzoPlanta1.setToolTipText("");
+        RefuerzoPlanta1.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
+        RefuerzoPlanta1.setEnabled(false);
+        RefuerzoPlanta1.setSelectionBackground(new java.awt.Color(60, 63, 65));
+        RefuerzoPlanta1.setVisibleRowCount(15);
+        jScrollPane4.setViewportView(RefuerzoPlanta1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(10, 10, 350, 440);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THE FAST", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+        jPanel3.setOpaque(false);
+
+        timeSlider.setMajorTickSpacing(20);
+        timeSlider.setPaintLabels(true);
+        timeSlider.setPaintTicks(true);
+        timeSlider.setSnapToTicks(true);
+        timeSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        timeSlider.setName("THE FAST"); // NOI18N
+        timeSlider.setOpaque(true);
+        timeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                timeSliderStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(timeSlider, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(timeSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(20, 460, 220, 70);
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SKYNET", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 0, 255))); // NOI18N
+        jPanel4.setOpaque(false);
+
+        SkynetStatus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "STATUS", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         SkynetStatus.setOpaque(false);
 
         skynetStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -315,399 +272,77 @@ public class Interfaz extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel1.add(SkynetStatus);
-        SkynetStatus.setBounds(560, 40, 100, 50);
-
-        resultPanel.setOpaque(false);
-
         result.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        result.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LAST MATCH", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
-        resultPanel.setLayout(resultPanelLayout);
-        resultPanelLayout.setHorizontalGroup(
-            resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resultPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(result, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        resultPanelLayout.setVerticalGroup(
-            resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(result, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("vs");
 
-        jPanel1.add(resultPanel);
-        resultPanel.setBounds(550, 150, 120, 60);
+        phone2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        phone2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        phone2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTENDER 2", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        jPanel2.setOpaque(false);
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nivel 2");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(280, 110, 50, 30);
-
-        jPanel3.setOpaque(false);
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Nivel 3");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(160, 110, 50, 30);
-
-        jPanel4.setOpaque(false);
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Refuerzo");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        phone1.setBackground(new java.awt.Color(255, 255, 255));
+        phone1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        phone1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        phone1.setBorder(javax.swing.BorderFactory.createTitledBorder("CONTENDER 1"));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(SkynetStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(phone1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(phone2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addComponent(SkynetStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phone1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phone2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(40, 110, 60, 30);
+        jPanel4.setBounds(420, 20, 380, 390);
 
-        jPanel5.setOpaque(false);
-
-        nivel1Text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nivel1Text.setText("Nivel 1");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nivel1Text)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nivel1Text)
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(400, 110, 50, 30);
-
-        phone1Name.setOpaque(false);
-
-        phone1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout phone1NameLayout = new javax.swing.GroupLayout(phone1Name);
-        phone1Name.setLayout(phone1NameLayout);
-        phone1NameLayout.setHorizontalGroup(
-            phone1NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, phone1NameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(phone1, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        phone1NameLayout.setVerticalGroup(
-            phone1NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, phone1NameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(phone1, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(phone1Name);
-        phone1Name.setBounds(460, 100, 120, 30);
-
-        Q1P1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        Q1P1.setOpaque(false);
-
-        Q1P1Text.setColumns(20);
-        Q1P1Text.setRows(5);
-        Q1P1Text.setOpaque(false);
-        Q1P1.setViewportView(Q1P1Text);
-
-        jPanel1.add(Q1P1);
-        Q1P1.setBounds(370, 150, 110, 390);
-
-        vs.setOpaque(false);
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("vs");
-
-        javax.swing.GroupLayout vsLayout = new javax.swing.GroupLayout(vs);
-        vs.setLayout(vsLayout);
-        vsLayout.setHorizontalGroup(
-            vsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-        );
-        vsLayout.setVerticalGroup(
-            vsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, vsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(vs);
-        vs.setBounds(580, 100, 50, 30);
-
-        phone2Name.setOpaque(false);
-
-        phone2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout phone2NameLayout = new javax.swing.GroupLayout(phone2Name);
-        phone2Name.setLayout(phone2NameLayout);
-        phone2NameLayout.setHorizontalGroup(
-            phone2NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, phone2NameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(phone2, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        phone2NameLayout.setVerticalGroup(
-            phone2NameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(phone2NameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(phone2, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel1.add(phone2Name);
-        phone2Name.setBounds(630, 100, 120, 30);
-
-        Q2P1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Q2P1Text.setColumns(20);
-        Q2P1Text.setRows(5);
-        Q2P1.setViewportView(Q2P1Text);
-
-        jPanel1.add(Q2P1);
-        Q2P1.setBounds(250, 150, 110, 390);
-
-        Q3P1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Q3P1Text.setColumns(20);
-        Q3P1Text.setRows(5);
-        Q3P1.setViewportView(Q3P1Text);
-
-        jPanel1.add(Q3P1);
-        Q3P1.setBounds(130, 150, 110, 390);
-
-        RP1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        RP1Text.setColumns(20);
-        RP1Text.setRows(5);
-        RP1.setViewportView(RP1Text);
-
-        jPanel1.add(RP1);
-        RP1.setBounds(10, 150, 110, 390);
-
-        Q1P2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Q1P2Text.setColumns(20);
-        Q1P2Text.setRows(5);
-        Q1P2.setViewportView(Q1P2Text);
-
-        jPanel1.add(Q1P2);
-        Q1P2.setBounds(730, 150, 110, 390);
-
-        Q2P2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Q2P2Text.setColumns(20);
-        Q2P2Text.setRows(5);
-        Q2P2.setViewportView(Q2P2Text);
-
-        jPanel1.add(Q2P2);
-        Q2P2.setBounds(850, 150, 110, 390);
-
-        Q3P2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Q3P2Text.setColumns(20);
-        Q3P2Text.setRows(5);
-        Q3P2.setViewportView(Q3P2Text);
-
-        jPanel1.add(Q3P2);
-        Q3P2.setBounds(1090, 150, 110, 390);
-
-        RP2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        RP2.setOpaque(false);
-
-        RP2Text.setColumns(20);
-        RP2Text.setRows(5);
-        RP2Text.setOpaque(false);
-        RP2.setViewportView(RP2Text);
-
-        jPanel1.add(RP2);
-        RP2.setBounds(970, 150, 110, 390);
-
-        jPanel6.setOpaque(false);
-
-        jLabel2.setText("Nivel 1");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel6);
-        jPanel6.setBounds(760, 110, 50, 30);
-
-        jPanel7.setOpaque(false);
-
-        jLabel7.setText("Nivel 2");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel7);
-        jPanel7.setBounds(880, 110, 50, 30);
-
-        jPanel8.setOpaque(false);
-
-        jLabel8.setText("Nivel 3");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel8);
-        jPanel8.setBounds(1000, 110, 50, 30);
-
-        phoneList.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        phoneList.setOpaque(false);
-
-        phoneListText.setColumns(20);
-        phoneListText.setRows(5);
-        phoneListText.setOpaque(false);
-        phoneList.setViewportView(phoneListText);
-
-        jPanel1.add(phoneList);
-        phoneList.setBounds(540, 270, 140, 270);
-
-        jPanel9.setOpaque(false);
-
-        jLabel9.setText("Refuerzo");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addContainerGap())
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addContainerGap())
-        );
-
-        jPanel1.add(jPanel9);
-        jPanel9.setBounds(1110, 110, 58, 30);
-
-        timeSlider.setBackground(new java.awt.Color(255, 255, 255));
-        timeSlider.setMajorTickSpacing(50);
-        timeSlider.setPaintLabels(true);
-        timeSlider.setPaintTicks(true);
-        timeSlider.setSnapToTicks(true);
-        timeSlider.setValue(0);
-        timeSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        timeSlider.setOpaque(true);
-        timeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                timeSliderStateChanged(evt);
+        startButton.setText("START");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(timeSlider);
-        timeSlider.setBounds(510, 240, 200, 20);
+        jPanel1.add(startButton);
+        startButton.setBounds(980, 490, 90, 22);
+
+        stopButton.setText("STOP");
+        stopButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(stopButton);
+        stopButton.setBounds(1100, 490, 90, 22);
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Classes/Images/portada_sono-bisque-doll-31.jpg"))); // NOI18N
         fondo.setText("jLabel2");
@@ -722,7 +357,7 @@ public class Interfaz extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
         );
 
         pack();
@@ -730,15 +365,107 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
         // TODO add your handling code here:
-        if (timeSlider.getValue() == 0) {
-            Main.superInteligenciaArtificialPuroPene.setWaitTime(10000);
-        } else if (timeSlider.getValue() == 50) {
-            Main.superInteligenciaArtificialPuroPene.setWaitTime(1000);
-        } else {
-            Main.superInteligenciaArtificialPuroPene.setWaitTime(100);
-        }
+        updateSkynetSpeed();
     }//GEN-LAST:event_timeSliderStateChanged
 
+    
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        if (!this.running){
+            clearGUI();
+            this.running = true;
+            updateSkynetSpeed();
+            Main.start();
+        } 
+    }//GEN-LAST:event_startButtonActionPerformed
+
+    private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+        if (this.running){
+            this.running = false;
+            Main.Kitagawa.stop();
+            Main.Kitagawa.interrupt();
+            Main.reset();
+        }
+    }//GEN-LAST:event_stopButtonActionPerformed
+
+    private void updateSkynetSpeed(){
+        int time = timeSlider.getValue();
+        if (time == 0) {
+            Main.Kitagawa.setWaitTime(10000);
+        } else if (time == 20) {
+            Main.Kitagawa.setWaitTime(7500);
+        } else if (time == 40) {
+            Main.Kitagawa.setWaitTime(5000);
+        } else if (time == 60) {
+            Main.Kitagawa.setWaitTime(2500);
+        } else if (time == 80) {
+            Main.Kitagawa.setWaitTime(1000);
+        } else {
+            Main.Kitagawa.setWaitTime(100);
+        }
+    }
+    public void clearGUI(){
+        String[] reset = {""};
+        result.setText("");
+        skynetStatus.setText("");
+        phone1.setText("");
+        phone2.setText("");
+        Prioridad1Planta1.setListData(reset);
+        Prioridad2Planta1.setListData(reset);
+        Prioridad3Planta1.setListData(reset);
+        RefuerzoPlanta1.setListData(reset);
+        Prioridad1Planta2.setListData(reset);
+        Prioridad2Planta2.setListData(reset);
+        Prioridad3Planta2.setListData(reset);
+        RefuerzoPlanta2.setListData(reset);
+        listaGanadores.setListData(reset);
+        
+    }
+    public void updateQueues(Planta planta1, Planta planta2, Queue marketReady){
+        updatePlanta1(planta1);
+        updatePlanta2(planta2);
+        updateMarketReady(marketReady);
+        
+    }
+    
+    public void setResult(String battleResult){
+        result.setText(battleResult);
+    }
+    
+    public void setSkynetStatus(String status){
+        skynetStatus.setText(status);
+    }
+    
+    public void setPhone1(String phone){
+        phone1.setText(phone);
+    }
+    
+    public void setPhone2(String phone){
+        phone2.setText(phone);
+    }
+    
+    public void updatePlanta1(Planta planta){
+        
+        Prioridad1Planta1.setListData(planta.getPriority1().getList());
+        Prioridad2Planta1.setListData(planta.getPriority2().getList());
+        Prioridad3Planta1.setListData(planta.getPriority3().getList());
+        RefuerzoPlanta1.setListData(planta.getReinforcement().getList());
+   
+    }
+    
+    public void updatePlanta2(Planta planta){
+ 
+        Prioridad1Planta2.setListData(planta.getPriority1().getList());
+        Prioridad2Planta2.setListData(planta.getPriority2().getList());
+        Prioridad3Planta2.setListData(planta.getPriority3().getList());
+        RefuerzoPlanta2.setListData(planta.getReinforcement().getList());
+        
+    }
+    
+    public void updateMarketReady(Queue marketReady){
+ 
+        listaGanadores.setListData(marketReady.getListHor());
+       
+    }
     /**
      * @param args the command line arguments
      */
@@ -775,57 +502,38 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Plant1;
-    private javax.swing.JPanel Plant1Title;
-    private javax.swing.JLabel Plant2;
-    private javax.swing.JPanel Plant2Title;
-    private javax.swing.JScrollPane Q1P1;
-    private javax.swing.JTextArea Q1P1Text;
-    private javax.swing.JScrollPane Q1P2;
-    private javax.swing.JTextArea Q1P2Text;
-    private javax.swing.JScrollPane Q2P1;
-    private javax.swing.JTextArea Q2P1Text;
-    private javax.swing.JScrollPane Q2P2;
-    private javax.swing.JTextArea Q2P2Text;
-    private javax.swing.JScrollPane Q3P1;
-    private javax.swing.JTextArea Q3P1Text;
-    private javax.swing.JScrollPane Q3P2;
-    private javax.swing.JTextArea Q3P2Text;
-    private javax.swing.JScrollPane RP1;
-    private javax.swing.JTextArea RP1Text;
-    private javax.swing.JScrollPane RP2;
-    private javax.swing.JTextArea RP2Text;
-    private javax.swing.JPanel SKYNET;
+    private javax.swing.JPanel PanelPlanta2;
+    private javax.swing.JList<String> Prioridad1Planta1;
+    private javax.swing.JList<String> Prioridad1Planta2;
+    private javax.swing.JList<String> Prioridad2Planta1;
+    private javax.swing.JList<String> Prioridad2Planta2;
+    private javax.swing.JList<String> Prioridad3Planta1;
+    private javax.swing.JList<String> Prioridad3Planta2;
+    private javax.swing.JList<String> RefuerzoPlanta1;
+    private javax.swing.JList<String> RefuerzoPlanta2;
     private javax.swing.JPanel SkynetStatus;
     private javax.swing.JLabel fondo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel nivel1Text;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JList<String> listaGanadores;
     private javax.swing.JLabel phone1;
-    private javax.swing.JPanel phone1Name;
     private javax.swing.JLabel phone2;
-    private javax.swing.JPanel phone2Name;
-    private javax.swing.JScrollPane phoneList;
-    private javax.swing.JTextArea phoneListText;
     private javax.swing.JLabel result;
-    private javax.swing.JPanel resultPanel;
     private javax.swing.JLabel skynetStatus;
+    private javax.swing.JButton startButton;
+    private javax.swing.JButton stopButton;
     private javax.swing.JSlider timeSlider;
     private javax.swing.JPanel vs;
     // End of variables declaration//GEN-END:variables

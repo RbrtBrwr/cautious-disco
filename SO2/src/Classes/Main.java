@@ -16,11 +16,9 @@ import java.util.Map;
  */
 public class Main {
 
-    public static int sizeOfTest = 1000;
-    public static String[] ids = new String[sizeOfTest];
+    public static Skynet Kitagawa = new Skynet();
     public static Interfaz interfaz = new Interfaz();
     public static Queue marketReady;
-    public static Skynet superInteligenciaArtificialPuroPene = new Skynet();
 
     /**
      * @param args the command line arguments
@@ -34,10 +32,18 @@ public class Main {
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 writeFile(saveStatistics());
                 System.exit(0);
-    }
-});
+            }
+        });
         
-                superInteligenciaArtificialPuroPene.getPhones();
+    }
+    
+    public static void start(){
+
+        Kitagawa.start();
+    }
+    
+    public static void reset(){
+        Kitagawa = new Skynet();
     }
     
     public static Map saveStatistics(){

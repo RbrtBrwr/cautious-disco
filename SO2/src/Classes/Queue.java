@@ -78,9 +78,41 @@ public class Queue {
     public void checkOut(){
         QNode temp = this.head;
         while (temp != null){
-//            System.out.print(temp.getPhone().getModel() + " " + temp.getPhone().getID() + " | ");
             temp = temp.getNext();
         }
+    }
+    
+    public String getPrintable(){
+        String output = "";
+        QNode temp = this.head;
+        while (temp != null){
+            output += temp.getPhone().getModel() + " " + temp.getPhone().getID() + "\n";
+            temp = temp.getNext();
+        }
+        return output;
+    }
+    
+    public String[] getList(){
+        String[] output = new String[75];
+        QNode temp = this.head;
+        int i = 0;
+        while (temp != null && i < 75){
+            output[i] = temp.getPhone().getModel() + " " + temp.getPhone().getID();
+            temp = temp.getNext();
+            i++;
+        }
+        return output;
+    }
+    public String[] getListHor(){
+        String[] output = new String[75];
+        QNode temp = this.head;
+        int i = 0;
+        while (temp != null && i < 75){
+            output[i] = temp.getPhone().getModel() + " - " + temp.getPhone().getID() + " || ";
+            temp = temp.getNext();
+            i++;
+        }
+        return output;
     }
     
 

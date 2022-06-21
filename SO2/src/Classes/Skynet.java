@@ -11,9 +11,9 @@ import java.util.logging.Logger;
  *
  * @author rober
  */
-public class Skynet {
+public class Skynet extends Thread{
 //    Esto es para que se vean mas estados que solo el de jugar clash
-    final int TRANSITION_TIME;
+    private int transitionTime;
     private int waitTime;
     
     private final Admin admin;
@@ -21,34 +21,46 @@ public class Skynet {
     private Phone phone_2;
     private String stauts;
     
+    private boolean running;
+    
     public Skynet(){
         this.admin = new Admin();
-        this.stauts = "Booting";
-        this.TRANSITION_TIME = 100;
-        this.waitTime = 1000;
-
-        try {
-            Thread.sleep(TRANSITION_TIME);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
+        this.transitionTime = 200;
+        this.waitTime = 2000;
+        this.running = true;
         
     }
     
+    @Override
+    public void run(){
+        this.stauts = "BOOTING";
+        Main.interfaz.setSkynetStatus(stauts);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        while (this.running){
+            getPhones();
+            
+        }
+    }
     
     public void getPhones(){
-        this.stauts = "Prepping";
+        this.stauts = "SETUP";
         Main.interfaz.setSkynetStatus(stauts);
+        try {
+            Thread.sleep(transitionTime);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Phone [] phones = admin.getPhones();
         phone_1 = phones[0];
         phone_2 = phones[1];
-        Main.interfaz.setPhone1(phone_1.getModel() + phone_1.getID());
-        Main.interfaz.setPhone2(phone_2.getModel() + phone_2.getID());
-//        System.out.println(phone_1.getModel() + phone_1.getID() + " vs " + phone_2.getModel() + phone_2.getID());
+        Main.interfaz.setPhone1(phone_1.getModel() + " - " + phone_1.getID());
+        Main.interfaz.setPhone2(phone_2.getModel() + " - " + phone_2.getID());
         try {
-            Thread.sleep(TRANSITION_TIME);
+            Thread.sleep(transitionTime);
         } catch (InterruptedException ex) {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,6 +71,7 @@ public class Skynet {
     
     public void setWaitTime(int time){
         this.waitTime = time;
+        this.transitionTime = time / 5;
     }
 
     public void decideFuture(){
@@ -104,7 +117,7 @@ public class Skynet {
             Main.interfaz.setResult("<html>GANADOR: " + "<br>" + phone_2.getModel() + phone_2.getID() + "</html>");
 //            System.out.println(phone_2.getModel() + phone_2.getID() + " wins");
         }
-        getPhones();
+//        getPhones();
         
     }
 
@@ -118,7 +131,7 @@ public class Skynet {
 //        System.out.println("EMPATE----------------------------------");
 
         admin.draw(phone_1, phone_2);
-        getPhones();
+//        getPhones();
     }
 
     public void reinforce(){
@@ -131,7 +144,7 @@ public class Skynet {
 //        System.out.println("REFUERZO----------------------------------");
 
         admin.reinforce(phone_1, phone_2);
-        getPhones();
+//        getPhones();
         
     }
 
