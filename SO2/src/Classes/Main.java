@@ -30,7 +30,11 @@ public class Main {
             
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                writeFile(saveStatistics());
+                try {
+                    writeFile(saveStatistics());
+                } catch (NullPointerException ex){
+                    System.out.println("QUE NO SIRVE DIJE! QUE TOXIC@!");
+                }
                 System.exit(0);
             }
         });
@@ -47,22 +51,29 @@ public class Main {
     }
     
     public static Map saveStatistics(){
-        QNode temp = marketReady.getHead();
-        int counter10 = 0;
-        int counterPro = 0;
-        Map<String, Integer> map = new HashMap<>();
-        
-        while (temp != null){
-            if(temp.getPhone().getModel() == "Xperia Pro-I"){
-                counterPro++;
-            } else{
-                counter10++;
+        try {
+            QNode temp = marketReady.getHead();
+            int counter10 = 0;
+            int counterPro = 0;
+            Map<String, Integer> map = new HashMap<>();
+
+            while (temp != null){
+                if(temp.getPhone().getModel() == "Xperia Pro-I"){
+                    counterPro++;
+                } else{
+                    counter10++;
+                }
+                temp = temp.getNext();
             }
-            temp = temp.getNext();
-    }
-        map.put("Xperia Pro-I ", counterPro);
-        map.put("Xperia 10 III ", counter10);
-        return map;
+            map.put("Xperia Pro-I ", counterPro);
+            map.put("Xperia 10 III ", counter10);
+            return map;
+            
+        } catch (NullPointerException ex){
+            System.out.println("AHHH NOOOO ESO NO SIRVE SI NO CORRES EL PROGRAMA LOKILLO");
+        }
+        
+        return null;
     }
     
     public static void writeFile(Map map) {
