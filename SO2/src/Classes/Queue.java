@@ -78,7 +78,7 @@ public class Queue {
     public void checkOut(){
         QNode temp = this.head;
         while (temp != null){
-            System.out.print(temp.getPhone().getModel() + " " + temp.getPhone().getID() + " | ");
+//            System.out.print(temp.getPhone().getModel() + " " + temp.getPhone().getID() + " | ");
             temp = temp.getNext();
         }
     }

@@ -4,6 +4,9 @@
  */
 package Classes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author ponsa
@@ -28,23 +31,24 @@ public class Admin{
         phones[0] = this.planta1.getPhone();
         phones[1] = this.planta2.getPhone();
         
-        System.out.println("======================" + tracker + "========================");
+//        System.out.println("======================" + tracker + "========================");
         tracker++;
         
 
         planta1.updateQueues();
         planta2.updateQueues();
 
-        Main.interfaz.updateQueues(planta1, planta2);
+        Main.interfaz.updateQueues(planta1, planta2, marketReady);
+        Main.marketReady = this.marketReady;
         productionCounter++;
         if (productionCounter == 1){
             productionCounter = 0;
             
             if (Math.random() <= .70){
                 newPhones();
-                System.out.println("cree telefonos");
+//                System.out.println("cree telefonos");
             } else {
-                System.out.println("no cree nada");
+//                System.out.println("no cree nada");
             }
         }
         if (phones[0] == null || phones[1] == null){
@@ -95,4 +99,6 @@ public class Admin{
         this.planta2.queuePhone(new Phone("Xperia 10 III"));
 
     }
+    
+    
 }

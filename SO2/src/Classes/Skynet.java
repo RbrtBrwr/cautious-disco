@@ -32,6 +32,7 @@ public class Skynet {
         }
 
         getPhones();
+        
     }
     
     
@@ -43,7 +44,7 @@ public class Skynet {
         phone_2 = phones[1];
         Main.interfaz.setPhone1(phone_1.getModel() + phone_1.getID());
         Main.interfaz.setPhone2(phone_2.getModel() + phone_2.getID());
-        System.out.println(phone_1.getModel() + phone_1.getID() + " vs " + phone_2.getModel() + phone_2.getID());
+//        System.out.println(phone_1.getModel() + phone_1.getID() + " vs " + phone_2.getModel() + phone_2.getID());
         try {
             Thread.sleep(TRANSITION_TIME);
         } catch (InterruptedException ex) {
@@ -91,11 +92,11 @@ public class Skynet {
         if (firstPhoneWin > secondPhoneWin) {
             admin.registerWinner(phone_1);
             Main.interfaz.setResult("<html>GANADOR: " + "<br>" + phone_1.getModel() + phone_1.getID() + "</html>");
-            System.out.println(phone_1.getModel() + phone_1.getID() + " wins");
+//            System.out.println(phone_1.getModel() + phone_1.getID() + " wins");
         } else {
             admin.registerWinner(phone_2);
             Main.interfaz.setResult("<html>GANADOR: " + "<br>" + phone_2.getModel() + phone_2.getID() + "</html>");
-            System.out.println(phone_2.getModel() + phone_2.getID() + " wins");
+//            System.out.println(phone_2.getModel() + phone_2.getID() + " wins");
         }
         getPhones();
         
@@ -108,7 +109,7 @@ public class Skynet {
         Main.interfaz.setResult("EMPATE");
 //        System.out.println("EMPATE");
 
-        System.out.println("EMPATE----------------------------------");
+//        System.out.println("EMPATE----------------------------------");
 
         admin.draw(phone_1, phone_2);
         getPhones();
@@ -121,7 +122,7 @@ public class Skynet {
         Main.interfaz.setResult("REFUERZO");
 //        System.out.println("REFUERZO");
 
-        System.out.println("REFUERZO----------------------------------");
+//        System.out.println("REFUERZO----------------------------------");
 
         admin.reinforce(phone_1, phone_2);
         getPhones();

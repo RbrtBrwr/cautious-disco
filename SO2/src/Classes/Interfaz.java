@@ -22,9 +22,10 @@ public class Interfaz extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void updateQueues(Planta planta1, Planta planta2){
+    public void updateQueues(Planta planta1, Planta planta2, Queue marketReady){
         updatePlanta1(planta1);
         updatePlanta2(planta2);
+        updateMarketReady(marketReady);
     }
     
     public void setResult(String battleResult){
@@ -131,6 +132,23 @@ public class Interfaz extends javax.swing.JFrame {
         
     }
     
+    public void updateMarketReady(Queue marketReady){
+        
+        String queue = "";
+        
+        
+        QNode current = marketReady.getHead();
+        
+        while (current != null){
+            queue += "  " + current.getPhone().getModel() + " " + current.getPhone().getID() + "\n";
+            current = current.getNext();
+        }
+        
+        phoneListText.setText(queue);
+
+        
+    }
+    
     
     
     
@@ -164,12 +182,12 @@ public class Interfaz extends javax.swing.JFrame {
         nivel1Text = new javax.swing.JLabel();
         phone1Name = new javax.swing.JPanel();
         phone1 = new javax.swing.JLabel();
+        Q1P1 = new javax.swing.JScrollPane();
+        Q1P1Text = new javax.swing.JTextArea();
         vs = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         phone2Name = new javax.swing.JPanel();
         phone2 = new javax.swing.JLabel();
-        Q1P1 = new javax.swing.JScrollPane();
-        Q1P1Text = new javax.swing.JTextArea();
         Q2P1 = new javax.swing.JScrollPane();
         Q2P1Text = new javax.swing.JTextArea();
         Q3P1 = new javax.swing.JScrollPane();
@@ -190,6 +208,8 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        phoneList = new javax.swing.JScrollPane();
+        phoneListText = new javax.swing.JTextArea();
         jPanel9 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
@@ -197,6 +217,8 @@ public class Interfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
+
+        Plant2Title.setOpaque(false);
 
         Plant2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Plant2.setText("PLANTA 2");
@@ -221,6 +243,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(Plant2Title);
         Plant2Title.setBounds(900, 20, 100, 30);
 
+        Plant1Title.setOpaque(false);
+
         Plant1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Plant1.setText("PLANTA 1");
 
@@ -243,6 +267,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1.add(Plant1Title);
         Plant1Title.setBounds(240, 20, 100, 30);
+
+        SKYNET.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("SKYNET");
@@ -267,6 +293,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(SKYNET);
         SKYNET.setBounds(560, 10, 100, 30);
 
+        SkynetStatus.setOpaque(false);
+
         skynetStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout SkynetStatusLayout = new javax.swing.GroupLayout(SkynetStatus);
@@ -289,6 +317,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(SkynetStatus);
         SkynetStatus.setBounds(560, 40, 100, 50);
 
+        resultPanel.setOpaque(false);
+
         result.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
@@ -310,6 +340,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1.add(resultPanel);
         resultPanel.setBounds(550, 150, 120, 60);
+
+        jPanel2.setOpaque(false);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Nivel 2");
@@ -334,6 +366,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(280, 110, 50, 30);
 
+        jPanel3.setOpaque(false);
+
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Nivel 3");
 
@@ -357,6 +391,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(160, 110, 50, 30);
 
+        jPanel4.setOpaque(false);
+
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Refuerzo");
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -377,6 +413,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(40, 110, 60, 30);
+
+        jPanel5.setOpaque(false);
 
         nivel1Text.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nivel1Text.setText("Nivel 1");
@@ -401,6 +439,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(400, 110, 50, 30);
 
+        phone1Name.setOpaque(false);
+
         phone1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout phone1NameLayout = new javax.swing.GroupLayout(phone1Name);
@@ -423,6 +463,19 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(phone1Name);
         phone1Name.setBounds(460, 100, 120, 30);
 
+        Q1P1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        Q1P1.setOpaque(false);
+
+        Q1P1Text.setColumns(20);
+        Q1P1Text.setRows(5);
+        Q1P1Text.setOpaque(false);
+        Q1P1.setViewportView(Q1P1Text);
+
+        jPanel1.add(Q1P1);
+        Q1P1.setBounds(370, 150, 110, 390);
+
+        vs.setOpaque(false);
+
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("vs");
 
@@ -442,6 +495,8 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1.add(vs);
         vs.setBounds(580, 100, 50, 30);
+
+        phone2Name.setOpaque(false);
 
         phone2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -464,15 +519,6 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1.add(phone2Name);
         phone2Name.setBounds(630, 100, 120, 30);
-
-        Q1P1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        Q1P1Text.setColumns(20);
-        Q1P1Text.setRows(5);
-        Q1P1.setViewportView(Q1P1Text);
-
-        jPanel1.add(Q1P1);
-        Q1P1.setBounds(370, 150, 110, 390);
 
         Q2P1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -529,13 +575,17 @@ public class Interfaz extends javax.swing.JFrame {
         Q3P2.setBounds(1090, 150, 110, 390);
 
         RP2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        RP2.setOpaque(false);
 
         RP2Text.setColumns(20);
         RP2Text.setRows(5);
+        RP2Text.setOpaque(false);
         RP2.setViewportView(RP2Text);
 
         jPanel1.add(RP2);
         RP2.setBounds(970, 150, 110, 390);
+
+        jPanel6.setOpaque(false);
 
         jLabel2.setText("Nivel 1");
 
@@ -559,6 +609,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel6);
         jPanel6.setBounds(760, 110, 50, 30);
 
+        jPanel7.setOpaque(false);
+
         jLabel7.setText("Nivel 2");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -581,6 +633,8 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel7);
         jPanel7.setBounds(880, 110, 50, 30);
 
+        jPanel8.setOpaque(false);
+
         jLabel8.setText("Nivel 3");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -602,6 +656,19 @@ public class Interfaz extends javax.swing.JFrame {
 
         jPanel1.add(jPanel8);
         jPanel8.setBounds(1000, 110, 50, 30);
+
+        phoneList.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        phoneList.setOpaque(false);
+
+        phoneListText.setColumns(20);
+        phoneListText.setRows(5);
+        phoneListText.setOpaque(false);
+        phoneList.setViewportView(phoneListText);
+
+        jPanel1.add(phoneList);
+        phoneList.setBounds(560, 270, 110, 270);
+
+        jPanel9.setOpaque(false);
 
         jLabel9.setText("Refuerzo");
 
@@ -726,6 +793,8 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JPanel phone1Name;
     private javax.swing.JLabel phone2;
     private javax.swing.JPanel phone2Name;
+    private javax.swing.JScrollPane phoneList;
+    private javax.swing.JTextArea phoneListText;
     private javax.swing.JLabel result;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JLabel skynetStatus;

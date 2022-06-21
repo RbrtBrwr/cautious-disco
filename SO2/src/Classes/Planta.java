@@ -100,13 +100,13 @@ public class Planta {
     }
 
     public void checkAll(){
-        System.out.println("Priority 1");
+//        System.out.println("Priority 1");
         this.priority1.checkOut();
-        System.out.println("\nPriority 2");
+//        System.out.println("\nPriority 2");
         this.priority2.checkOut();
-        System.out.println("\nPriority 3");
+//        System.out.println("\nPriority 3");
         this.priority3.checkOut();
-        System.out.println("\nReinforce");
+//        System.out.println("\nReinforce");
         this.reinforce.checkOut();
     }
     
