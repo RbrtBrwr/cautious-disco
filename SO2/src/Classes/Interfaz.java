@@ -210,6 +210,7 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         phoneList = new javax.swing.JScrollPane();
         phoneListText = new javax.swing.JTextArea();
+        timeSlider = new javax.swing.JSlider();
         jPanel9 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
@@ -668,6 +669,22 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(phoneList);
         phoneList.setBounds(560, 270, 110, 270);
 
+        timeSlider.setBackground(new java.awt.Color(255, 255, 255));
+        timeSlider.setMajorTickSpacing(100);
+        timeSlider.setMinimum(100);
+        timeSlider.setPaintLabels(true);
+        timeSlider.setPaintTicks(true);
+        timeSlider.setSnapToTicks(true);
+        timeSlider.setInverted(true);
+        timeSlider.setOpaque(true);
+        timeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                timeSliderStateChanged(evt);
+            }
+        });
+        jPanel1.add(timeSlider);
+        timeSlider.setBounds(520, 240, 200, 20);
+
         jPanel9.setOpaque(false);
 
         jLabel9.setText("Refuerzo");
@@ -710,6 +727,11 @@ public class Interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
+        // TODO add your handling code here:
+        Main.superInteligenciaArtificialPuroPene.setWaitTime(timeSlider.getValue());
+    }//GEN-LAST:event_timeSliderStateChanged
 
     /**
      * @param args the command line arguments
@@ -798,6 +820,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel result;
     private javax.swing.JPanel resultPanel;
     private javax.swing.JLabel skynetStatus;
+    private javax.swing.JSlider timeSlider;
     private javax.swing.JPanel vs;
     // End of variables declaration//GEN-END:variables
 

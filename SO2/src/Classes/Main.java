@@ -20,6 +20,7 @@ public class Main {
     public static String[] ids = new String[sizeOfTest];
     public static Interfaz interfaz = new Interfaz();
     public static Queue marketReady;
+    public static Skynet superInteligenciaArtificialPuroPene;
 
     /**
      * @param args the command line arguments
@@ -36,7 +37,7 @@ public class Main {
     }
 });
         //AI
-        Skynet superInteligenciaArtificialPuroPene = new Skynet();
+        superInteligenciaArtificialPuroPene = new Skynet();
     }
     
     public static Map saveStatistics(){

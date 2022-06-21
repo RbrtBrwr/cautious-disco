@@ -13,8 +13,8 @@ import java.util.logging.Logger;
  */
 public class Skynet {
 //    Esto es para que se vean mas estados que solo el de jugar clash
-    final int TRANSITION_TIME = 100;
-    private int waitTime = 100;
+    final int TRANSITION_TIME;
+    private int waitTime;
     
     private final Admin admin;
     private Phone phone_1;
@@ -24,7 +24,9 @@ public class Skynet {
     public Skynet(){
         this.admin = new Admin();
         this.stauts = "Booting";
-//        Main.interfaz.setAIStatus(this.stauts);
+        this.TRANSITION_TIME = 100;
+        this.waitTime = 10000;
+
         try {
             Thread.sleep(TRANSITION_TIME);
         } catch (InterruptedException ex) {
@@ -53,6 +55,10 @@ public class Skynet {
         this.stauts = "FIGHT";
         Main.interfaz.setSkynetStatus(stauts);
         decideFuture();
+    }
+    
+    public void setWaitTime(int time){
+        this.waitTime = time;
     }
 
     public void decideFuture(){
