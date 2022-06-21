@@ -47,9 +47,10 @@ public class Planta {
         } else if (!this.priority2.isEmpty()){
             this.priority3.updateHeadCounter();
             return this.priority2.DQ();
-        // } else if (!this.priority3.isEmpty()){
-        } else {
+        } else if (!this.priority3.isEmpty()){
             return this.priority3.DQ();
+        } else {
+            return this.reinforce.DQ();
         }
         // Aqui me podria retornar null si todos los telefonos estan en la cola de reinforce, pero no se si es necesario hacer algo al respecto
     }
@@ -95,18 +96,16 @@ public class Planta {
                 this.queuePhone(temp);
             }
         }
-        
-        checkAll();
     }
 
     public void checkAll(){
-//        System.out.println("Priority 1");
+        System.out.println("Priority 1");
         this.priority1.checkOut();
-//        System.out.println("\nPriority 2");
+        System.out.println("\nPriority 2");
         this.priority2.checkOut();
-//        System.out.println("\nPriority 3");
+        System.out.println("\nPriority 3");
         this.priority3.checkOut();
-//        System.out.println("\nReinforce");
+        System.out.println("\nReinforce");
         this.reinforce.checkOut();
     }
     

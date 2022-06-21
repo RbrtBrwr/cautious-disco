@@ -36,7 +36,7 @@ public class Skynet extends Thread{
         this.stauts = "BOOTING";
         Main.interfaz.setSkynetStatus(stauts);
         try {
-            Thread.sleep(3000);
+            Thread.sleep(10);
         } catch (InterruptedException ex) {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
