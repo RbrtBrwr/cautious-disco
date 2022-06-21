@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  */
 public class Interfaz extends javax.swing.JFrame {
     
-    private boolean running = false;
+    public boolean running = false;
     
 
     /**
@@ -383,6 +383,7 @@ public class Interfaz extends javax.swing.JFrame {
             this.running = false;
             Main.Kitagawa.stop();
             Main.Kitagawa.interrupt();
+            Main.saveData();
             Main.reset();
         }
     }//GEN-LAST:event_stopButtonActionPerformed

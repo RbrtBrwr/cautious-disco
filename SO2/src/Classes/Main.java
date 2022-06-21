@@ -30,10 +30,13 @@ public class Main {
             
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                try {
-                    writeFile(saveStatistics());
-                } catch (NullPointerException ex){
-                    System.out.println("QUE NO SIRVE DIJE! QUE TOXIC@!");
+                if (interfaz.running){
+                    try {
+                        saveData();
+                    } catch (NullPointerException ex){
+                        System.out.println("QUE NO SIRVE DIJE! QUE TOXIC@!");
+                    }
+                    
                 }
                 System.exit(0);
             }
@@ -48,6 +51,11 @@ public class Main {
     
     public static void reset(){
         Kitagawa = new Skynet();
+    }
+    
+    public static void saveData(){
+        appendToFile(saveStatistics());
+        appendToFile(saveRun());
     }
     
     public static Map saveStatistics(){
@@ -76,16 +84,46 @@ public class Main {
         return null;
     }
     
-    public static void writeFile(Map map) {
+    public static String saveRun(){
         try {
-            FileWriter myWriter = new FileWriter("winners.txt");
-            myWriter.write(map.toString());
+            QNode temp = marketReady.getHead();
+            String output ="--------------------------NEW RUN-------------------------------\n";
+            while (temp != null){
+                output += temp.getPhone().getModel() + " - ID:" + temp.getPhone().getID() + "\n";
+                temp = temp.getNext();
+            }
+            return output;
+            
+        } catch (NullPointerException ex){
+            System.out.println("AHHH NOOOO ESO NO SIRVE SI NO CORRES EL PROGRAMA LOKILLO");
+        }
+        
+        return null;
+    }
+    
+    public static void appendToFile(Map map) {
+        try {
+            FileWriter myWriter = new FileWriter("winners.txt", true);
+            myWriter.append("\n" + map.toString());
             myWriter.close();
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
         }
     }
+    
+    public static void appendToFile(String info) {
+        try {
+            FileWriter myWriter = new FileWriter("runs.txt", true);
+            myWriter.append(saveRun());
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+    }
+    
+    
     
    
     
