@@ -25,7 +25,7 @@ public class Skynet {
         this.admin = new Admin();
         this.stauts = "Booting";
         this.TRANSITION_TIME = 100;
-        this.waitTime = 10000;
+        this.waitTime = 1000;
 
         try {
             Thread.sleep(TRANSITION_TIME);
@@ -33,7 +33,7 @@ public class Skynet {
             Logger.getLogger(Skynet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        getPhones();
+
         
     }
     

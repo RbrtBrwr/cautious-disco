@@ -210,9 +210,9 @@ public class Interfaz extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         phoneList = new javax.swing.JScrollPane();
         phoneListText = new javax.swing.JTextArea();
-        timeSlider = new javax.swing.JSlider();
         jPanel9 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
+        timeSlider = new javax.swing.JSlider();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -667,23 +667,7 @@ public class Interfaz extends javax.swing.JFrame {
         phoneList.setViewportView(phoneListText);
 
         jPanel1.add(phoneList);
-        phoneList.setBounds(560, 270, 110, 270);
-
-        timeSlider.setBackground(new java.awt.Color(255, 255, 255));
-        timeSlider.setMajorTickSpacing(100);
-        timeSlider.setMinimum(100);
-        timeSlider.setPaintLabels(true);
-        timeSlider.setPaintTicks(true);
-        timeSlider.setSnapToTicks(true);
-        timeSlider.setInverted(true);
-        timeSlider.setOpaque(true);
-        timeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                timeSliderStateChanged(evt);
-            }
-        });
-        jPanel1.add(timeSlider);
-        timeSlider.setBounds(520, 240, 200, 20);
+        phoneList.setBounds(540, 270, 140, 270);
 
         jPanel9.setOpaque(false);
 
@@ -709,6 +693,22 @@ public class Interfaz extends javax.swing.JFrame {
         jPanel1.add(jPanel9);
         jPanel9.setBounds(1110, 110, 58, 30);
 
+        timeSlider.setBackground(new java.awt.Color(255, 255, 255));
+        timeSlider.setMajorTickSpacing(50);
+        timeSlider.setPaintLabels(true);
+        timeSlider.setPaintTicks(true);
+        timeSlider.setSnapToTicks(true);
+        timeSlider.setValue(0);
+        timeSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        timeSlider.setOpaque(true);
+        timeSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                timeSliderStateChanged(evt);
+            }
+        });
+        jPanel1.add(timeSlider);
+        timeSlider.setBounds(510, 240, 200, 20);
+
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Classes/Images/portada_sono-bisque-doll-31.jpg"))); // NOI18N
         fondo.setText("jLabel2");
         jPanel1.add(fondo);
@@ -730,7 +730,13 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void timeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_timeSliderStateChanged
         // TODO add your handling code here:
-        Main.superInteligenciaArtificialPuroPene.setWaitTime(timeSlider.getValue());
+        if (timeSlider.getValue() == 0) {
+            Main.superInteligenciaArtificialPuroPene.setWaitTime(10000);
+        } else if (timeSlider.getValue() == 50) {
+            Main.superInteligenciaArtificialPuroPene.setWaitTime(1000);
+        } else {
+            Main.superInteligenciaArtificialPuroPene.setWaitTime(100);
+        }
     }//GEN-LAST:event_timeSliderStateChanged
 
     /**

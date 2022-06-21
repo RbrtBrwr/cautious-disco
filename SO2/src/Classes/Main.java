@@ -20,7 +20,7 @@ public class Main {
     public static String[] ids = new String[sizeOfTest];
     public static Interfaz interfaz = new Interfaz();
     public static Queue marketReady;
-    public static Skynet superInteligenciaArtificialPuroPene;
+    public static Skynet superInteligenciaArtificialPuroPene = new Skynet();
 
     /**
      * @param args the command line arguments
@@ -36,8 +36,8 @@ public class Main {
                 System.exit(0);
     }
 });
-        //AI
-        superInteligenciaArtificialPuroPene = new Skynet();
+        
+                superInteligenciaArtificialPuroPene.getPhones();
     }
     
     public static Map saveStatistics(){
