@@ -25,8 +25,8 @@ public class Skynet extends Thread{
     
     public Skynet(){
         this.admin = new Admin();
-        this.transitionTime = 200;
-        this.waitTime = 2000;
+        this.transitionTime = 1000;
+        this.waitTime = 10000;
         this.running = true;
         
     }
@@ -71,7 +71,7 @@ public class Skynet extends Thread{
     
     public void setWaitTime(int time){
         this.waitTime = time;
-        this.transitionTime = time / 5;
+        this.transitionTime = time / 10;
     }
 
     public void decideFuture(){

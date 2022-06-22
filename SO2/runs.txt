@@ -530,3 +530,27 @@ Xperia 10 III - ID:1933
 Xperia Pro-I - ID:0820
 Xperia Pro-I - ID:0268
 Xperia 10 III - ID:5402
+--------------------------NEW RUN-------------------------------
+Xperia Pro-I - ID:2050
+Xperia 10 III - ID:6084
+Xperia Pro-I - ID:8830
+Xperia 10 III - ID:4861
+Xperia 10 III - ID:7563
+Xperia Pro-I - ID:5294
+Xperia Pro-I - ID:2825
+Xperia 10 III - ID:3366
+Xperia 10 III - ID:4715
+Xperia Pro-I - ID:7482
+Xperia Pro-I - ID:0189
+Xperia Pro-I - ID:5721
+Xperia 10 III - ID:4320
+Xperia Pro-I - ID:6231
+Xperia Pro-I - ID:6294
+Xperia Pro-I - ID:7827
+Xperia Pro-I - ID:1935
+Xperia Pro-I - ID:5782
+Xperia Pro-I - ID:5066
+Xperia Pro-I - ID:3034
+--------------------------NEW RUN-------------------------------
+Xperia 10 III - ID:1308
+Xperia 10 III - ID:8200

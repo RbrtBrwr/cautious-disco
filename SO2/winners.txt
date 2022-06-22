@@ -21,3 +21,5 @@
 {Xperia Pro-I =2, Xperia 10 III =1}
 {Xperia Pro-I =17, Xperia 10 III =16}
 {Xperia Pro-I =4, Xperia 10 III =6}
+{Xperia Pro-I =14, Xperia 10 III =6}
+{Xperia Pro-I =0, Xperia 10 III =2}

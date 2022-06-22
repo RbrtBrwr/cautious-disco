@@ -219,6 +219,7 @@ public class Interfaz extends javax.swing.JFrame {
         timeSlider.setPaintLabels(true);
         timeSlider.setPaintTicks(true);
         timeSlider.setSnapToTicks(true);
+        timeSlider.setValue(0);
         timeSlider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         timeSlider.setName("THE FAST"); // NOI18N
         timeSlider.setOpaque(true);
